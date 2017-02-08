@@ -7,8 +7,6 @@ function climbing_route(elevation_map){
 var assert = require('assert');
 
 if (!global.is_checking) {
-    assert.equal(sumTwo(3, 2), 5, "First")
-    assert.equal(sumTwo(5, 7), 12, "Second")
     assert.equal(climbing_route([
         '000',
         '210',
@@ -29,10 +27,10 @@ if (!global.is_checking) {
         '012100002220',
         '011100000000']) == 26, 'two top')
     assert.equal(climbing_route([
-        '00000000210000',
-        '00100001432100',
-        '01211112211000',
-        '00100000000000')) == 22, 'one top')
+        '00000000120000',
+        '00100002432100',
+        '01211111211000',
+        '00100000000000']) == 18, 'one top')
     assert.equal(climbing_route([
         '00000000000000000000000000',
         '00000000000111111100000000',
