@@ -50,7 +50,7 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
                             zy + i * cellSize,
                             cellSize,
                             cellSize).attr(attrRect).attr("fill",
-                                result && dataExplanation[i].slice(j,j+1)*1 
+                                result && dataExplanation && dataExplanation[i].slice(j,j+1)*1 
                                     ? colorOrangeAry[elv]
                                     : colorBlueAry[elv]);
                         this.paper.text(zx + j * cellSize + cellSize / 2,
@@ -70,9 +70,6 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
                 python: 'climbing_route'
             },
             animation: function($expl, data){
-                if (! data.ext.explanation) {
-                    return;
-                }
                 var canvas = new climbingRouteCanvas(
                     data.in[0],
                     data.ext.explanation,
