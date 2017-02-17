@@ -1,15 +1,12 @@
 //Dont change it
 requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
     function (extIO, $, TableComponent) {
-
         function climbingRouteCanvas(
             dom, dataInp, dataExp, result) {
-            var zx = 10;
-            var zy = 10;
-            var cellSize = 26;
+            var [zx, zy] = [10, 10];
+            var cellSize = dataExp.cell_size;
             var fullSizeX = zx * 2 + cellSize * dataInp[0].length;
             var fullSizeY = zy * 2 + cellSize * dataInp.length;
-            var max_elv = 0;
             var color = {
                 dark: "#294270",
                 orange: [
@@ -37,46 +34,52 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
                     "#006CA9",
                 ]
             };
-            var attrRect = {"stroke": color.dark, "stroke-width": 1};
-            var attrText
-                = {"stroke": color.dark,
-                    "font-size": 12, 
-                    "font-family": "Verdana"};
+            var attr = {
+                rect: {
+                    'stroke': color.dark,
+                    'stroke-width': 1
+                },
+                text: {
+                    'stroke': color.dark,
+                    'font-size': dataExp.font_size, 
+                    'font-family': "Verdana"
+                },
+            };
 
+            // draw cell & text
             var paper = Raphael(dom, fullSizeX, fullSizeY, 0, 0);
             var cell_dic = paper.set();
-            var text_dic = paper.set();
-            var phase = 0;
-            for (var i = 0; i < dataInp.length; i++) {
-                for (var j = 0; j < dataInp[i].length; j++) {
-                    var elv = dataInp[i].slice(j, j+1)*1;
-                    var cell= paper.rect(zx + j * cellSize,
-                        zy + i * cellSize,
-                        cellSize,
-                        cellSize).attr(attrRect).attr("fill",
-                            color.blue[elv]);
-                    var text = paper.text(zx + j * cellSize + cellSize / 2,
+            for (var i = 0; i < dataInp.length; i+=1) {
+                for (var j = 0; j < dataInp[i].length; j+=1) {
+                    var ev = dataInp[i].slice(j, j+1)*1;
+                    // cell
+                    cell_dic[i*100+j]
+                        = paper.rect(zx + j * cellSize,
+                            zy + i * cellSize,
+                            cellSize,
+                            cellSize).attr(attr.rect).attr("fill",
+                                color.blue[ev]);
+                    // text
+                    paper.text(zx + j * cellSize + cellSize / 2,
                         zy + i * cellSize + cellSize / 2,
-                        dataInp[i].slice(j, j+1)
-                    ).attr(attrText);
-
-                    cell_dic[i*100+j] = cell;
-                    text_dic[i*100+j] = text;
+                        ev
+                    ).attr(attr.text);
                 }
             }
+
+            // paint route
             var [x, y] = [0, 0];
             var path_dic = {};
-            dataExp = ' ' + dataExp;
-            for (var i=0; i < dataExp.length; i+=1) {
-                var dir = dataExp.slice(i, i+1);
-                var em = 0;
+            var route = ' ' + dataExp.route;
+            for (var i=0; i < route.length; i+=1) {
+                var dir = route.slice(i, i+1);
                 switch(dir){
                     case 'N': y -= 1; break;
                     case 'S': y += 1; break;
                     case 'W': x -= 1; break;
                     case 'E': x += 1; break; 
                 }
-                var elv = dataInp[y].slice(x, x+1)*1;
+                var ev = dataInp[y].slice(x, x+1)*1;
                 var co = y*100 + x;
                 if (path_dic[co] === undefined){
                     path_dic[co] = 0;
@@ -85,12 +88,11 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
                 }
                 setTimeout(function () {
                     var c = co;
-                    var e = Math.min(elv + path_dic[co], 9);
+                    var e = Math.min(ev + path_dic[co], 9);
                     return function(){
                         cell_dic[c].animate({'fill': color.orange[e]}, 50);
                     };
-                }(), 50 * (phase));
-                phase += 1;
+                }(), 50 * i);
             }
             return false;
         }

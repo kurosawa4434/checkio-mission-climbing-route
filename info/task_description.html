@@ -9,7 +9,7 @@ The map is given as a list of strings.
     <li>0 : plain ( elevation is 0)</li>
     <li>1-9 : hill (number is elevation)</li>
 </ul>
-<p>"mountain" is adjacent hill group.(It consists of two or more hills)</p>
+<p>"mountain" is adjacent (only 4 directions) hill group.(It consists of two or more hills)</p>
 <p>
 Start is top-left. Goal is bottom-right. You have to go over all the mountaintops.  You can only move vertical and horizontal. And you can only move to the same or one elevation difference. You should look for the shortest route. (return Number of steps)</p>
 
@@ -34,21 +34,23 @@ Start is top-left. Goal is bottom-right. You have to go over all the mountaintop
         <strong>Example:</strong>
     </p>
 <pre class="brush: python">{% if interpreter.slug == "js-node" %}
-climbing_route(['010',
-                '121',
-                '010']) == 4
-climbing_route(['000000001210',
-                '011100002320',
-                '012100001210',
-                '011100000000']) == 16
+climbing_route(['000',
+                '120',
+                '000']) == 6
+
+climbing_route(['000000001110',
+                '011100002310',
+                '012100002220',
+                '011100000000']) == 26
 {% else %}
-climbing_route(['010',
-                '121',
-                '010']) == 4
-climbing_route(['000000001210',
-                '011100002320',
-                '012100001210',
-                '011100000000']) == 16
+climbingRoute(['000',
+               '120',
+               '000']) == 6
+
+climbingRoute(['000000001110',
+               '011100002310',
+               '012100002220',
+               '011100000000']) == 26
 {% endif %}</pre>
 </div>
 
@@ -63,4 +65,5 @@ climbing_route(['000000001210',
     3 &le; len(elevation_map)<br>
     all(3 &le; len(row) and len(row) == len(elevation_map[0]) for row in elevation__map)<br>
     Each mountain has only one mountaintop.<br>
+    There is no mountain that can not climb.
 </p>

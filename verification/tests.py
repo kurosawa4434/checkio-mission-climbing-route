@@ -10,10 +10,16 @@ Each test is dict with
 
 TESTS = {
     "Basics": [
-        { "input": [['000', '120',
+        {
+            "input": [['000',
+                       '120',
                        '000']],
             "answer": 6,
-            "explanation":' SEWSEE',
+            "explanation": {
+                "cell_size": 50,
+                "font_size": 26,
+                "route": ' SEWSEE',
+            }
         },
         {
             "input": [['00000',
@@ -22,18 +28,28 @@ TESTS = {
                        '03210',
                        '00000']],
             "answer": 26,
-            "explanation": 'SSSSEEENWW' +
-                           'NNEESWENWW' +
-                           'SSEESE'
+            "explanation": {
+                "cell_size": 40,
+                "font_size": 18,
+                "route":
+                    'SSSSEEENWW' +
+                    'NNEESWENWW' +
+                    'SSEESE',
+            }
         },
         {
             "input": [['000000001',
                        '222322222',
                        '100000000']],
             "answer": 26,
-            "explanation": 'EEEEEEEESW' +
-                           'WWWWWWWSEE' +
-                           'EEEEEE'
+            "explanation": {
+                "cell_size": 26,
+                "font_size": 12,
+                "route": 
+                    'EEEEEEEESW' +
+                    'WWWWWWWSEE' +
+                    'EEEEEE'
+            }
         },
         {
             "input": [['000000002110',
@@ -41,15 +57,28 @@ TESTS = {
                        '012100002220',
                        '011100000000']],
             "answer": 26,
-            "explanation": 'SSEEEEEEESEEEENNWSWNSENESS'
+            "explanation": {
+                "cell_size": 26,
+                "font_size": 12,
+                "route":
+                    'SSEEEEEEES' +
+                    'EEEENNWSWN' +
+                    'SENESS'
+            }
         },
         {
-            "input": [['00000000120000',
-                       '00100002432100',
-                       '01211111211000',
-                       '00100000000000']],
-            "answer": 18,
-            "explanation": 'EEEEEEEEESWEEEEESS'
+            "input": [['000000120000',
+                       '001002432100',
+                       '012111211000',
+                       '001000000000']],
+            "answer": 16,
+            "explanation": {
+                "cell_size": 26,
+                "font_size": 12,
+                "route":
+                    'EEEEEEESWE' +
+                    'EEEESS'
+            }
         },
         {
             "input": [['00000000111111100',
@@ -68,12 +97,17 @@ TESTS = {
                        '12100000000000000',
                        '11100000000000000']],
             "answer": 52,
-            "explanation": 'ESSSSSSSSS' +
-                           'SSSSEEEENN' +
-                           'NNEEEEEENN' +
-                           'NNNNEEEESS' +
-                           'SSSSSEWSSS' +
-                           'SE'
+            "explanation": {
+                "cell_size": 20,
+                "font_size": 10,
+                "route":
+                    'ESSSSSSSSS' +
+                    'SSSSEEEENN' +
+                    'NNEEEEEENN' +
+                    'NNNNEEEESS' +
+                    'SSSSSEWSSS' +
+                    'SE'
+            }
         },
      ],
     "Extra": [
@@ -92,17 +126,22 @@ TESTS = {
                        '0212023202120',
                        '0000000000000']],
             "answer": 110,
-            "explanation": 'EEEEEESSSN' +
-                           'NNWWSSSSWW' +
-                           'NNNSSSEEEE' +
-                           'SSSNNNEEEE' +
-                           'NNNSSSEESS' +
-                           'SSWWNNNSSS' +
-                           'WWWWSSSNNN' +
-                           'WWWWNNNSSS' +
-                           'WWSSSSEENN' +
-                           'NSSSEEEEEE' +
-                           'EENNNSSSEE'
+            "explanation": {
+                "cell_size": 26,
+                "font_size": 12,
+                "route":
+                    'EEEEEESSSN' +
+                    'NNWWSSSSWW' +
+                    'NNNSSSEEEE' +
+                    'SSSNNNEEEE' +
+                    'NNNSSSEESS' +
+                    'SSWWNNNSSS' +
+                    'WWWWSSSNNN' +
+                    'WWWWNNNSSS' +
+                    'WWSSSSEENN' +
+                    'NSSSEEEEEE' +
+                    'EENNNSSSEE'
+            }
         },
         {
             "input": [['000002000000',
@@ -121,11 +160,16 @@ TESTS = {
                        '000001000000',
                        '000001000000']],
             "answer": 43,
-            "explanation": 'SEEEEENSSS' +
-                           'SEEEEWWWSS' +
-                           'SSSSENEESN' +
-                           'WWSSWSSSEE' +
-                           'EEE'
+            "explanation": {
+                "cell_size": 26,
+                "font_size": 12,
+                "route":
+                    'SEEEEENSSS' +
+                    'SEEEEWWWSS' +
+                    'SSSSENEESN' +
+                    'WWSSWSSSEE' +
+                    'EEE'
+            }
         },
         {
             "input": [['01220000122332332',
@@ -143,11 +187,29 @@ TESTS = {
                        '22345443321012210',
                        '33456554332111210']],
             "answer": 37,
-            "explanation": 'SSSSSSSSSE' +
-                           'EEEEEEEEEE' +
-                           'EEENWNWESE' +
-                           'SSSSSEE'
+            "explanation": {
+                "cell_size": 20,
+                "font_size": 10,
+                "route":
+                    'SSSSSSSSSE' +
+                    'EEEEEEEEEE' +
+                    'EEENWNWESE' +
+                    'SSSSSEE'
+            }
+        },
+        {
+            "input": [['01020',
+                       '00304',
+                       '05060',
+                       '00708',
+                       '00000']],
+            "answer": 8,
+            "explanation": {
+                "cell_size": 40,
+                "font_size": 18,
+                "route":
+                    'SSSSEEEE'
+            }
         },
     ],
-
 }
