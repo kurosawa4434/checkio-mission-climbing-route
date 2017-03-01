@@ -1,4 +1,4 @@
-"""
+﻿"""
 CheckiOReferee is a base referee for checking you code.
     arguments:
         tests -- the dict contains tests in the specific structure.
@@ -39,7 +39,7 @@ api.add_listener(
         tests=TESTS,
         function_name={
             "python": "climbing_route",
-            "js": "climbing_route"
+            "js": "climbingRoute"
         },
         cover_code={
             'python-27': cover_codes.unwrap_args,
