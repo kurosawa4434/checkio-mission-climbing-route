@@ -7,7 +7,6 @@ Each test is dict with
     "explanation" -- not necessary key, it's using for additional info in animation.
 """
 
-
 TESTS = {
     "Basics": [
         {
@@ -45,7 +44,7 @@ TESTS = {
             "explanation": {
                 "cell_size": 26,
                 "font_size": 12,
-                "route": 
+                "route":
                     'EEEEEEEESW' +
                     'WWWWWWWSEE' +
                     'EEEEEE'
@@ -109,7 +108,7 @@ TESTS = {
                     'SE'
             }
         },
-     ],
+    ],
     "Extra": [
         {
             "input": [['0000000000000',
@@ -209,6 +208,28 @@ TESTS = {
                 "font_size": 18,
                 "route":
                     'SSSSEEEE'
+            }
+        },
+        {
+            "input": [[
+                '00000000000',
+                '00000100000',
+                '00000200000',
+                '00022322000',
+                '00023432000',
+                '01234543210',
+                '00023432000',
+                '00022322000',
+                '00000200000',
+                '00000100000',
+                '00000000000',
+            ]],
+            "answer": 20,
+            "explanation": {
+                "cell_size": 20,
+                "font_size": 10,
+                "route":
+                    'EEEEESSSSSSSSSSEEEEE',
             }
         },
     ],
